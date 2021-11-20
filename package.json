@@ -1,0 +1,34 @@
+{
+  "name": "rebuild-svelte-book",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vite",
+    "build:core": "vite build",
+    "build:sections": "node scripts/build-sections-json.mjs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/XGHeaven/rebuild-svelte-book.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/XGHeaven/rebuild-svelte-book/issues"
+  },
+  "homepage": "https://github.com/XGHeaven/rebuild-svelte-book#readme",
+  "devDependencies": {
+    "vite": "^2.6.13"
+  },
+  "dependencies": {
+    "@types/diff": "^5.0.1",
+    "diff": "^5.0.0",
+    "diff2html": "^3.4.13",
+    "github-markdown-css": "^5.0.0",
+    "highlight.js": "^11.3.1",
+    "lit": "^2.0.2",
+    "remark": "^14.0.1",
+    "remark-html": "^15.0.0"
+  }
+}
