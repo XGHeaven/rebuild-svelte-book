@@ -2,7 +2,7 @@ import { css, html, LitElement } from "lit";
 import { customElement, property, state } from "lit/decorators.js";
 
 @customElement('md-diff')
-class MDDiff extends LitElement {
+export class MDDiff extends LitElement {
   static styles = css`
     .code {
       line-height: 1;
