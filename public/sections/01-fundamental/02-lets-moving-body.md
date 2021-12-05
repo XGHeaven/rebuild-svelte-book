@@ -54,7 +54,19 @@
 
 <md-note type="preknowledge">
 
-需要了解和 `Text` 相关的前置 DOM API，[点击此处](https://developer.mozilla.org/en-US/docs/Web/API/Document/createTextNode)。
+<md-note-title link="https://developer.mozilla.org/en-US/docs/Web/API/Document/createTextNode">
+
+`Text` 与 `createTextNode`
+
+</md-note-title>
+
+在 DOM 的体系中，通常我们可以认为文字是某一个元素的属性（例如通过 .innerText 获取内容文本），但是文字本身也是一个节点，只不过这个节点比较特殊，它不是 Element 而是 Node，这也就意味着它通常无法被 `children` 属性所获取到。这也就是为什么大家对这个的存在感这么低的原因。
+
+要想获取某个 Element 下的文本节点，只能通过 `childNodes` 属性获取，而且一旦用户更新 `innerText` 属性，不论文字节点的个数和状态，都会被强制重置成一个文字节点。所以文本节点是脆弱的，但是在这个场景下，它又是强大的。
+
+由于文字节点不是 Element，而是 Node，所以无法通过 `innerText` 这个 Element 专有的 API 更新内容，只能通过标准的 `textContent` API 来操作文本节点。
+
+扩展：除了文本节点外，注释节点也属于 Node。注释节点的性质和文本节点性质基本一致。
 
 </md-note>
 

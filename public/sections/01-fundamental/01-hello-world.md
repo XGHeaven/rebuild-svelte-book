@@ -14,7 +14,12 @@
 
 <md-note type="preknowledge">
 
-如果你还是一个对 Web 不太了解的新人，也不了解相关的 DOM API，可以[点击此处](https://developer.mozilla.org/en-US/docs/Web/API/HTML_DOM_API)了解。
+<md-note-title link="https://developer.mozilla.org/en-US/docs/Web/API/HTML_DOM_API">
+
+`createElement` 与 `appendChild`
+
+</md-note-title>
+
 这里主要使用了 DOM 的创建 `document.createElement` 以及添加到 DOM 树上 `appendChild` 的 API。
 
 </md-note>

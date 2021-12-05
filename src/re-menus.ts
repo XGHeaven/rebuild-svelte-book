@@ -18,8 +18,17 @@ function flattenSection(sec: any, parent?: any): any[] {
 @customElement('re-menus')
 export class ReMenus extends LitElement {
   static styles = css`
+    .menu {
+      padding: 8px;
+      cursor: pointer;
+    }
+
+    .menu:hover {
+      background: rgba(0, 0, 255, .2);
+    }
+
     .current {
-      color: blue;
+      color: #0000cc;
     }
   `
 
@@ -45,8 +54,8 @@ export class ReMenus extends LitElement {
   override render() {
     return html`
       ${repeat(this._flattenSections, v => v.path, v => html`
-        <div style="padding-left: ${16 * v.depth}px" class="${classMap({
-          current: this.current === v.path
+        <div style="padding-left: ${16 * v.depth + 12}px" class="menu ${classMap({
+          current: this.current === v.path,
         })}" @click=${this._click} data-path="${v.path}">${v.title}</div>
       `)}
     `
