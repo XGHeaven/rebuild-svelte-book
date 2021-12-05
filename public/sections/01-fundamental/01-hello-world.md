@@ -4,7 +4,7 @@
 
 ## Hello World
 
-我们以 Web 届的 Hello World 作为一个例子作为开场，比如有如下 HTML 结构：
+我们以 Web 届的 Hello World 作为开场示例，比如有如下 HTML 结构：
 
 <md-code ref="01-001.html"></md-code>
 
