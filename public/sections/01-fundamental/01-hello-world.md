@@ -8,6 +8,18 @@
 
 <md-code ref="01-001.html"></md-code>
 
+<md-note type="preknowledge" link="https://developer.mozilla.org/en-US/docs/Web/HTML">
+
+<md-note-title>
+
+什么是 HTML
+
+</md-note-title>
+
+**HTML** (HyperText Markup Language) 是构建一个网页最基础的部分，这里定义了网页不同部分所代表的含义。如果你还不曾了解，建议先去学习一些最基础的语法和使用规范，同时本文所提到的 HTML 规范基于标准定制，会在文中不同位置讲解。
+
+</md-note>
+
 利用 DOM API 来实现这段 HTML 其实是一件非常简单的事情：
 
 <md-code ref="01-002.ts"></md-code>
@@ -20,7 +32,7 @@
 
 </md-note-title>
 
-这里主要使用了 DOM 的创建 `document.createElement` 以及添加到 DOM 树上 `appendChild` 的 API。
+**DOM** 全称 `Document Object Model`，它定义了如何通过 JavaScript 操作 HTML 节点的规范。这里主要使用了 DOM 的创建 `document.createElement` 以及添加到 DOM 树上 `appendChild` 的 API。
 
 </md-note>
 
@@ -36,7 +48,7 @@
 
 其实讲到这里明眼人一看就看出来了，这样写的话可复用性太低，因为同一个模板不仅仅可能挂载到 body 上，还有可能挂载到其他的位置。
 
-因此我们封装一个函数，并设定两个入参，分别是挂载标点和挂载锚点，后文简称**标点**和**锚点**。用于指定挂载的位置。
+因此我们封装一个函数，并设定两个入参，分别是挂载标点 `target` 和挂载锚点 `anchor`，后文简称**标点**和**锚点**。用于指定挂载的位置。
 
 <md-code diff="01-002.ts,01-003.ts"></md-code>
 
