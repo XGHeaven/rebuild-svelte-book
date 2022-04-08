@@ -10,7 +10,7 @@ function createBlock(hour: number, minute: number) {
     },
     destroy() {
       div.remove()
-    }
+    },
   }
 }
 

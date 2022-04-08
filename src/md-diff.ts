@@ -1,5 +1,5 @@
-import { css, html, LitElement } from "lit";
-import { customElement, property, state } from "lit/decorators.js";
+import { css, html, LitElement } from 'lit'
+import { customElement, property, state } from 'lit/decorators.js'
 
 @customElement('md-diff')
 export class MDDiff extends LitElement {
@@ -19,9 +19,7 @@ export class MDDiff extends LitElement {
   @state() diffs: Diff.Change[] = []
 
   override render() {
-    return html`
-      <pre class="code">${this.diffs.map(diff => this._renderChange(diff))}</pre>
-    `
+    return html` <pre class="code">${this.diffs.map((diff) => this._renderChange(diff))}</pre> `
   }
 
   private _renderChange(change: Diff.Change) {

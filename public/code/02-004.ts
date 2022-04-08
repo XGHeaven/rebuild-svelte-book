@@ -3,14 +3,14 @@ function createBlock(name: string) {
   div.innerText = 'Hello ' + name
   return {
     mount(target: HTMLElement, anchor: HTMLElement) {
-			target.insertBefore(div, anchor)
+      target.insertBefore(div, anchor)
     },
     update(name: string) {
       div.textContent = 'Hello ' + name
     },
     destroy() {
       div.remove()
-    }
+    },
   }
 }
 

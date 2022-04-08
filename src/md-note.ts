@@ -1,12 +1,12 @@
-import { css, html, LitElement } from "lit";
-import { customElement, property } from "lit/decorators.js";
+import { css, html, LitElement } from 'lit'
+import { customElement, property } from 'lit/decorators.js'
 
 const TYPE_EMOJI_MAP: Record<string, string> = {
-  'preknowledge': '🍽'
+  preknowledge: '🍽',
 }
 
 const TYPE_TEXT_MAP: Record<string, string> = {
-  'preknowledge': '预备知识'
+  preknowledge: '预备知识',
 }
 
 @customElement('md-note')
@@ -60,8 +60,8 @@ export class MDNote extends LitElement {
     }
   `
 
-  @property({type: String}) type?: string
-  @property({type: String}) link?: string
+  @property({ type: String }) type?: string
+  @property({ type: String }) link?: string
 
   override render() {
     return html`

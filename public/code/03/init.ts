@@ -1,10 +1,4 @@
-function createBlock(
-  target: HTMLElement,
-  anchor: HTMLElement,
-  name: string,
-  age: number,
-  gender: string
-) {
+function createBlock(target: HTMLElement, anchor: HTMLElement, name: string, age: number, gender: string) {
   const div1 = document.createElement('div')
   const div2 = document.createElement('div')
   const div3 = document.createElement('div')
@@ -35,6 +29,6 @@ function createBlock(
       div1.remove()
       div2.remove()
       div3.remove()
-    }
+    },
   }
 }

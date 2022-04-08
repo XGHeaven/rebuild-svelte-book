@@ -1,4 +1,4 @@
-import { css, html, LitElement, PropertyValues } from "lit";
+import { css, html, LitElement, PropertyValues } from 'lit'
 import { customElement, state } from 'lit/decorators.js'
 
 const SIDE_WIDTH = 280
@@ -55,34 +55,35 @@ class AppHome extends LitElement {
 
   override render() {
     return html`
-    ${this.errMsg ? html`<div>${this.errMsg}</div>` : null}
-    <div class="side">
-      <re-menus .sections=${this.sections} .current=${this.section} @topage=${this._toPage}></re-menus>
-    </div>
-    <div class="body">
-      <re-wip></re-wip>
-      <div class="content">
-        ${this.section ? html`<md-core section="${this.section}"></md-core>` : null}
+      ${this.errMsg ? html`<div>${this.errMsg}</div>` : null}
+      <div class="side">
+        <re-menus .sections=${this.sections} .current=${this.section} @topage=${this._toPage}></re-menus>
       </div>
-    </div>
+      <div class="body">
+        <re-wip></re-wip>
+        <div class="content">${this.section ? html`<md-core section="${this.section}"></md-core>` : null}</div>
+      </div>
     `
   }
 
   private _fetchData() {
     this.loading = true
-    fetch('/sections.json').then(resp => {
-      return resp.json()
-    }).then(sections => {
-      this.sections = sections
-      this.loading = false
-    }).catch(e => {
-      console.error(e)
-      this.loading = false
-      this.errMsg = 'Load fail: ' + e.message
-    })
+    fetch('/sections.json')
+      .then((resp) => {
+        return resp.json()
+      })
+      .then((sections) => {
+        this.sections = sections
+        this.loading = false
+      })
+      .catch((e) => {
+        console.error(e)
+        this.loading = false
+        this.errMsg = 'Load fail: ' + e.message
+      })
   }
 
-  private _toPage(e: CustomEvent<{path: string}>) {
+  private _toPage(e: CustomEvent<{ path: string }>) {
     this.section = e.detail.path
     window.location.hash = `#${e.detail.path}`
   }

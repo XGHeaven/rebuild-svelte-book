@@ -7,7 +7,7 @@ function createBlock(name: string) {
     },
     destroy() {
       div.remove()
-    }
+    },
   }
 }
 

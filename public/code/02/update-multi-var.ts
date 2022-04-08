@@ -10,6 +10,6 @@ function createBlock(target: HTMLElement, anchor: HTMLElement, hour: number, min
     },
     destroy() {
       div.remove()
-    }
+    },
   }
 }

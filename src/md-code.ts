@@ -1,20 +1,23 @@
-import { css, html, LitElement, PropertyValues, unsafeCSS } from "lit";
-import { customElement, property, state } from "lit/decorators.js";
+import { css, html, LitElement, PropertyValues, unsafeCSS } from 'lit'
+import { customElement, property, state } from 'lit/decorators.js'
 import { unsafeHTML } from 'lit/directives/unsafe-html.js'
 import * as Diff from 'diff'
 import hljs from 'highlight.js/lib/common'
-import type { HighlightResult } from "highlight.js";
+import type { HighlightResult } from 'highlight.js'
 import hljsStyle from 'highlight.js/styles/github.css'
 
 @customElement('md-code')
 export class MDCode extends LitElement {
-  static styles = [unsafeCSS(hljsStyle), css`
-    :host {
-      font-size: 14px;
-    }
-  `]
-  @property({type: String}) ref?: string
-  @property({type: String}) diff?: string
+  static styles = [
+    unsafeCSS(hljsStyle),
+    css`
+      :host {
+        font-size: 14px;
+      }
+    `,
+  ]
+  @property({ type: String }) ref?: string
+  @property({ type: String }) diff?: string
 
   @state() type = 'ref'
   @state() code = ''
@@ -42,9 +45,7 @@ export class MDCode extends LitElement {
     if (this.type === 'diff') {
       return html`<md-diff .diffs=${this.diffData}></md-diff>`
     }
-    return html`
-      <div></div>
-    `
+    return html` <div></div> `
   }
 
   private async _showCode() {
@@ -57,7 +58,7 @@ export class MDCode extends LitElement {
       this.type = 'diff'
       // this.diffData = Diff.createPatch('code', codeA, codeB)
       this.diffData = Diff.diffWords(codeA, codeB, {
-        ignoreWhitespace: true
+        ignoreWhitespace: true,
       })
     }
   }
@@ -73,7 +74,7 @@ export class MDCode extends LitElement {
         this._cachedCode = this.code
         this._cachedHTML = null
       } else {
-        this._cachedHTML = hljs.highlight(this.code, {language: this.ref!.split('.').slice(-1)[0]})
+        this._cachedHTML = hljs.highlight(this.code, { language: this.ref!.split('.').slice(-1)[0] })
         this._cachedCode = this.code
       }
     }

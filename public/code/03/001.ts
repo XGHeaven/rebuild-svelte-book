@@ -10,7 +10,7 @@ function createBlock() {
     },
     destroy() {
       div.remove()
-    }
+    },
   }
 }
 

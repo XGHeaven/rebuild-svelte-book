@@ -7,6 +7,6 @@ function createBlock(target: HTMLElement, anchor: HTMLElement, name: string) {
     },
     destroy() {
       div.remove()
-    }
+    },
   }
 }

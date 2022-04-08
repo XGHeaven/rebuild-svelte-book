@@ -1,5 +1,5 @@
-import { css, html, LitElement } from "lit";
-import { customElement } from "lit/decorators.js";
+import { css, html, LitElement } from 'lit'
+import { customElement } from 'lit/decorators.js'
 
 @customElement('re-wip')
 export class ReWIP extends LitElement {

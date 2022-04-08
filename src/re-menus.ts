@@ -1,5 +1,5 @@
-import { css, html, LitElement, PropertyValues } from "lit";
-import { customElement, state } from "lit/decorators.js";
+import { css, html, LitElement, PropertyValues } from 'lit'
+import { customElement, state } from 'lit/decorators.js'
 import { repeat } from 'lit/directives/repeat.js'
 import { classMap } from 'lit/directives/class-map.js'
 
@@ -9,10 +9,13 @@ function flattenSection(sec: any, parent?: any): any[] {
     depth: (parent?.depth ?? -1) + 1,
     path: (parent?.path ? parent.path + '/' : '') + sec.id,
   }
-  return [self, ...sec.children?.reduce((secs: any[], nsec: any[]) => {
-    secs.push(...flattenSection(nsec, self))
-    return secs
-  }, []) ?? []]
+  return [
+    self,
+    ...(sec.children?.reduce((secs: any[], nsec: any[]) => {
+      secs.push(...flattenSection(nsec, self))
+      return secs
+    }, []) ?? []),
+  ]
 }
 
 @customElement('re-menus')
@@ -24,7 +27,7 @@ export class ReMenus extends LitElement {
     }
 
     .menu:hover {
-      background: rgba(0, 0, 255, .2);
+      background: rgba(0, 0, 255, 0.2);
     }
 
     .current {
@@ -53,23 +56,36 @@ export class ReMenus extends LitElement {
 
   override render() {
     return html`
-      ${repeat(this._flattenSections, v => v.path, v => html`
-        <div style="padding-left: ${16 * v.depth + 12}px" class="menu ${classMap({
-          current: this.current === v.path,
-        })}" @click=${this._click} data-path="${v.path}">${v.title}</div>
-      `)}
+      ${repeat(
+        this._flattenSections,
+        (v) => v.path,
+        (v) => html`
+          <div
+            style="padding-left: ${16 * v.depth + 12}px"
+            class="menu ${classMap({
+              current: this.current === v.path,
+            })}"
+            @click=${this._click}
+            data-path="${v.path}"
+          >
+            ${v.title}
+          </div>
+        `
+      )}
     `
   }
 
   private _click(e: MouseEvent) {
     const path = (e.target as HTMLElement).dataset?.['path']
     if (path) {
-      this.dispatchEvent(new CustomEvent('topage', {
-        detail: {
-          path
-        },
-        bubbles: false,
-      }))
+      this.dispatchEvent(
+        new CustomEvent('topage', {
+          detail: {
+            path,
+          },
+          bubbles: false,
+        })
+      )
     }
   }
 }

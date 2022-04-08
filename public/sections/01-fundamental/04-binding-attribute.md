@@ -7,12 +7,7 @@
 ### 举个例子
 
 ```html
-<input
-  class="a"
-  value="b"
-  data-id="id"
-  others="other"
-/>
+<input class="a" value="b" data-id="id" others="other" />
 ```
 
 <md-code ref="03/001.ts"></md-code>
@@ -33,12 +28,7 @@
 在了解了上面的各种赋值方式之后，于是我们便可以开始考虑后续的更新操作了。还是用上文的例子，只不过我们这次将值换成对应的插值表达式。
 
 ```html
-<input
-  class={className}
-  value={value}
-  data-id={dataId}
-  others={other}
-/>
+<input class="{className}" value="{value}" data-id="{dataId}" others="{other}" />
 ```
 
 <md-code ref="03-002.ts"></md-code>

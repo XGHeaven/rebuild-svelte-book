@@ -1,5 +1,5 @@
-import { css, html, LitElement } from "lit";
-import { customElement, property } from "lit/decorators.js";
+import { css, html, LitElement } from 'lit'
+import { customElement, property } from 'lit/decorators.js'
 
 @customElement('md-note-title')
 export class MDNoteTitle extends LitElement {
@@ -18,7 +18,7 @@ export class MDNoteTitle extends LitElement {
     }
   `
 
-  @property({type: String}) link?: string
+  @property({ type: String }) link?: string
   override render() {
     return html`
       <div class="title">
