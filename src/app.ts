@@ -2,6 +2,15 @@ import { css, html, LitElement, PropertyValues } from 'lit'
 import { customElement, state } from 'lit/decorators.js'
 
 const SIDE_WIDTH = 280
+const DEFAULT_SECTION = '00-index'
+
+function getSelectionId(hash: string) {
+  if (hash.startsWith('#')) {
+    return hash.slice(1)
+  }
+
+  return DEFAULT_SECTION
+}
 
 @customElement('app-home')
 class AppHome extends LitElement {
@@ -30,26 +39,18 @@ class AppHome extends LitElement {
       padding: 0 24px;
     }
   `
-  @state() section?: string
+  @state() section = getSelectionId(location.hash)
   @state() sections = []
   @state() loading = true
   @state() errMsg = ''
 
-  connectedCallback() {
-    super.connectedCallback()
-    window.addEventListener('hashchange', () => {
-      const hash = location.hash
-      if (hash.startsWith('#')) {
-        this.section = hash.slice(1)
-      }
-    })
-    if (location.hash.startsWith('#')) {
-      this.section = location.hash.slice(1)
-    }
-  }
-
   override firstUpdated(changed: PropertyValues) {
     super.firstUpdated(changed)
+
+    window.addEventListener('hashchange', () => {
+      this.section = getSelectionId(location.hash)
+    })
+
     this._fetchData()
   }
 
