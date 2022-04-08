@@ -1,4 +1,4 @@
-import { html, LitElement, PropertyValues, unsafeCSS } from "lit";
+import { css, html, LitElement, PropertyValues, unsafeCSS } from "lit";
 import { customElement, property, state } from "lit/decorators.js";
 import { unsafeHTML } from 'lit/directives/unsafe-html.js'
 import * as Diff from 'diff'
@@ -8,7 +8,11 @@ import hljsStyle from 'highlight.js/styles/github.css'
 
 @customElement('md-code')
 export class MDCode extends LitElement {
-  static styles = unsafeCSS(hljsStyle)
+  static styles = [unsafeCSS(hljsStyle), css`
+    :host {
+      font-size: 14px;
+    }
+  `]
   @property({type: String}) ref?: string
   @property({type: String}) diff?: string
 
