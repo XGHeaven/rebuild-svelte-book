@@ -45,7 +45,7 @@ export class MDCode extends LitElement {
     if (this.type === 'diff') {
       return html`<md-diff .diffs=${this.diffData}></md-diff>`
     }
-    return html` <div></div> `
+    return html`<div>Not Found</div>`
   }
 
   private async _showCode() {

@@ -3,6 +3,7 @@ import { customElement, property, state } from 'lit/decorators.js'
 import { remark } from 'remark'
 import remarkGfm from 'remark-gfm'
 import remarkHtml from 'remark-html'
+import remarkFrontmatter from 'remark-frontmatter'
 import mdStyle from 'github-markdown-css/github-markdown-light.css'
 
 declare const process: any
@@ -51,24 +52,27 @@ export class MDCore extends LitElement {
     if (!section) {
       return
     }
-    console.log('fetch', section)
 
     const resp = await fetch(`/sections/${section}.md`)
     const content = await resp.text()
     this.mdContent = content
     const fragment = document.createElement('div')
     const startTime = performance.now()
-    const html = String(
-      await remark()
-        .use(remarkGfm)
-        .use(remarkHtml, {
-          sanitize: false,
-        })
-        .process(content)
-    )
+    const result = await remark()
+    .use(remarkGfm)
+    .use(remarkFrontmatter, {type: 'json', fence: {open: '{', close: '}'}})
+    .use(() => tree => {
+      // TODO: support frontmatter
+      // const value = JSON.parse(tree.children[0].value)
+    })
+    .use(remarkHtml, {
+      sanitize: false,
+    })
+    .process(content)
+
+    const html = String(result)
     this._parseTime = performance.now() - startTime
     fragment.innerHTML = html
-    console.log(fragment)
     this.domNode = fragment
   }
 }

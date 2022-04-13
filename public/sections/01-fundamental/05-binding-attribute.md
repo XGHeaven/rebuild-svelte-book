@@ -10,7 +10,7 @@
 <input class="a" value="b" data-id="id" others="other" />
 ```
 
-<md-code ref="03/001.ts"></md-code>
+<md-code ref="04/001.ts"></md-code>
 
 在这个例子中，我们一共出现了四种类型的赋值操作：
 
