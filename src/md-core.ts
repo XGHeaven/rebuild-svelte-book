@@ -53,7 +53,7 @@ export class MDCore extends LitElement {
       return
     }
 
-    const resp = await fetch(`/sections/${section}.md`)
+    const resp = await fetch(`/sections/${section}/index.md`)
     const content = await resp.text()
     this.mdContent = content
     const fragment = document.createElement('div')
