@@ -1,10 +1,10 @@
-import { html, LitElement } from "lit";
-import { customElement, property, state } from "lit/decorators.js";
+import { html, LitElement } from 'lit'
+import { customElement, property, state } from 'lit/decorators.js'
 
 @customElement('md-link')
 class MDLink extends LitElement {
-  @property({type: String}) href?: string
-  @property({type: Boolean}) section?: boolean
+  @property({ type: String }) href?: string
+  @property({ type: Boolean }) section?: boolean
 
   @state() sectionTitle?: string
   @state() realHref = ''
@@ -29,13 +29,13 @@ class MDLink extends LitElement {
 
   private handleClick() {
     if (!this.href) {
-      return;
+      return
     }
     // location.hash = `#${paths.join('/')}`
   }
 
   private processHref() {
-    const current = location.hash.startsWith('#') ? location.hash.slice(1) : location.hash;
+    const current = location.hash.startsWith('#') ? location.hash.slice(1) : location.hash
     const paths = current.split('/')
     const tos = (this.href ?? '').split('/')
     for (const path of tos) {

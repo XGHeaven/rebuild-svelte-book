@@ -59,16 +59,16 @@ export class MDCore extends LitElement {
     const fragment = document.createElement('div')
     const startTime = performance.now()
     const result = await remark()
-    .use(remarkGfm)
-    .use(remarkFrontmatter, {type: 'json', fence: {open: '{', close: '}'}})
-    .use(() => tree => {
-      // TODO: support frontmatter
-      // const value = JSON.parse(tree.children[0].value)
-    })
-    .use(remarkHtml, {
-      sanitize: false,
-    })
-    .process(content)
+      .use(remarkGfm)
+      .use(remarkFrontmatter, { type: 'json', fence: { open: '{', close: '}' } })
+      .use(() => (tree) => {
+        // TODO: support frontmatter
+        // const value = JSON.parse(tree.children[0].value)
+      })
+      .use(remarkHtml, {
+        sanitize: false,
+      })
+      .process(content)
 
     const html = String(result)
     this._parseTime = performance.now() - startTime
