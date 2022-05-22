@@ -10,3 +10,7 @@ function createBlock(target: HTMLElement, anchor: HTMLElement, name: string) {
     },
   }
 }
+
+let name = 'foo'
+const block = createBlock(document.body, null, name);
+block.mount()

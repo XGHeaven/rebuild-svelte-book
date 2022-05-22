@@ -1,0 +1,18 @@
+<script>
+    let h = 0
+    let m = 0
+    let s = 0
+
+    setTimeout(() => {
+        s += 1
+        if (s > 60) {
+            m += 1
+            s -= 60
+        }
+        if (m > 60) {
+            h += 1
+            m -= 60
+        }
+    }, 1000)
+</script>
+<div>{h}:{m}:{s}</div>

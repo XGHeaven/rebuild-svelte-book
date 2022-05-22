@@ -5,6 +5,7 @@ import * as Diff from 'diff'
 import hljs from 'highlight.js/lib/common'
 import type { HighlightResult } from 'highlight.js'
 import hljsStyle from 'highlight.js/styles/github.css'
+import { MDCore } from './md-core'
 
 @customElement('md-code')
 export class MDCode extends LitElement {
@@ -64,7 +65,7 @@ export class MDCode extends LitElement {
   }
 
   private async _getCode(code: string) {
-    const resp = await fetch(`/code/${code}`)
+    const resp = await fetch(this._resolveCodePath(code))
     return await resp.text()
   }
 
@@ -80,5 +81,22 @@ export class MDCode extends LitElement {
     }
 
     return this._cachedHTML
+  }
+
+  private _resolveCodePath(code: string) {
+    if (code.startsWith('.')) {
+      let parent = this.parentNode
+      while (parent && parent !== document.body) {
+        if ((parent as any).tagName === 'MD-CORE') {
+          break
+        }
+        parent = (parent as any).host ?? parent.parentNode
+      }
+
+      if (parent instanceof MDCore) {
+        return `/sections/${parent.section}/${code.slice(2)}`
+      }
+    }
+    return `/code/${code}`
   }
 }
