@@ -8,7 +8,7 @@
     "build:core": "vite build",
     "build:sections": "node scripts/build-sections-json.mjs",
     "format:md": "prettier -w ./public/sections/**/*.md",
-    "format:code": "prettier -w ./public/code/**/*.{js,ts,html}",
+    "format:code": "prettier -w ./public/**/*.{js,ts,html}",
     "format:src": "prettier -w ./src/**/*.{ts,css}",
     "format": "pnpm run format:md && pnpm run format:code && pnpm run format:src"
   },

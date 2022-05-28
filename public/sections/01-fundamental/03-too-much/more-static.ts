@@ -1,4 +1,4 @@
-function createBlock(target: HTMLElement, anchor: HTMLElement, ctx: {name: string}) {
+function createBlock(target: HTMLElement, anchor: HTMLElement, ctx: { name: string }) {
   const div = document.createElement('div')
   const text1 = document.createTextNode('Hi ')
   const text2 = document.createTextNode(ctx.name)
@@ -10,7 +10,7 @@ function createBlock(target: HTMLElement, anchor: HTMLElement, ctx: {name: strin
     mount() {
       target.insertBefore(div, anchor)
     },
-    update(ctx: {name: string}) {
+    update(ctx: { name: string }) {
       text2.textContent = ctx.name
     },
     destroy() {

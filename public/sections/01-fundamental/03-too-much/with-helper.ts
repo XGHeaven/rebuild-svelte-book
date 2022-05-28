@@ -1,6 +1,6 @@
 import { element, text, insert, append, setText, remove } from 'helper'
 
-function createBlock(target: HTMLElement, anchor: HTMLElement, ctx: {name: string}) {
+function createBlock(target: HTMLElement, anchor: HTMLElement, ctx: { name: string }) {
   const div = element('div')
   const text1 = text('Hi ')
   const text2 = text(ctx.name)
@@ -12,7 +12,7 @@ function createBlock(target: HTMLElement, anchor: HTMLElement, ctx: {name: strin
     mount() {
       insert(target, div, anchor)
     },
-    update(ctx: {name: string}) {
+    update(ctx: { name: string }) {
       setText(text2, ctx.name)
     },
     destroy() {
