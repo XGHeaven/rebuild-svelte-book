@@ -1,12 +1,12 @@
-function createBlock(target: HTMLElement, anchor: HTMLElement, h: number, m: number, s: number) {
+function createBlock(target: HTMLElement, anchor: HTMLElement, ctx: {h: number, m: number, s: number}) {
   const div = document.createElement('div')
-  div.innerText = h + ':' + m + ':' + s
+  div.innerText = ctx.h + ':' + ctx.m + ':' + ctx.s
   return {
     mount() {
       target.insertBefore(div, anchor)
     },
-    update(h: number, m: number, s: number) {
-        div.innerText = h + ':' + m + ':' + s
+    update(ctx: {h: number, m: number, s: number}) {
+        div.innerText = ctx.h + ':' + ctx.m + ':' + ctx.s
     },
     destroy() {
       div.remove()
@@ -18,7 +18,7 @@ let h = 0
 let m = 0
 let s = 0
 
-const block = createBlock(document.body, null, h, m, s);
+const block = createBlock(document.body, null, { h, m, s });
 block.mount()
 
 setTimeout(() => {
@@ -31,5 +31,5 @@ setTimeout(() => {
       h += 1
       m -= 60
   }
-  block.update(h, m, s)
+  block.update({h, m, s})
 }, 1000)
