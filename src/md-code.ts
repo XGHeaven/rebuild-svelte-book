@@ -14,15 +14,33 @@ export class MDCode extends LitElement {
     css`
       :host {
         font-size: 14px;
+        background-color: #fcfcfc;
+        border: 1px solid #ddd;
+        display: block;
+        border-radius: 4px;
+      }
+
+      .header {
+        background-color: #ccc;
+        font-size: 12px;
+        padding: 8px 16px;
+      }
+
+      .body {
+        padding: 0 16px;
+        overflow: auto;
+      }
+
+      .code {
       }
     `,
   ]
   @property({ type: String }) ref?: string
   @property({ type: String }) diff?: string
 
-  @state() type = 'ref'
-  @state() code = ''
-  @state() diffData: Diff.Change[] = []
+  @state() private type = 'ref'
+  @state() private code = ''
+  @state() private diffData: Diff.Change[] = []
 
   private _cachedCode = ''
   private _cachedHTML: HighlightResult | null = null
@@ -35,18 +53,29 @@ export class MDCode extends LitElement {
   }
 
   override render() {
+    let title
+    let code
     if (this.type === 'ref') {
       const result = this._highlight()
-      console.log(result)
+      title = this.ref
       if (!result) {
-        return null
+        code = 'Cannot found'
+      } else {
+        code = html`<pre><code>${unsafeHTML(result.value)}</code></pre>`
       }
-      return html`<pre><code>${unsafeHTML(result.value)}</code></pre>`
+    } else if (this.type === 'diff') {
+      title = this.diff
+      code = html`<md-diff .diffs=${this.diffData}></md-diff>`
+    } else {
+      code = html`<div>Not Found</div>`
     }
-    if (this.type === 'diff') {
-      return html`<md-diff .diffs=${this.diffData}></md-diff>`
-    }
-    return html`<div>Not Found</div>`
+
+    return html`
+      <div class="container">
+        <div class="header">${title}</div>
+        <div class="body">${code}</div>
+      </div>
+    `
   }
 
   private async _showCode() {

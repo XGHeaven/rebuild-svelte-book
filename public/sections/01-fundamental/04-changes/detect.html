@@ -1,0 +1,10 @@
+<script>
+  let a = 0
+  let b = 0
+
+  setTimeout(() => {
+    a = 1 // 在编译期间可以判断出 a 发生了变换，而 b 没有
+  }, 1000)
+</script>
+
+<div>{a}:{b}</div>

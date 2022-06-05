@@ -1,25 +1,36 @@
 import { html, LitElement } from 'lit'
 import { customElement, property, state } from 'lit/decorators.js'
+import { blinkElement } from './blink'
 
 @customElement('md-link')
 class MDLink extends LitElement {
   @property({ type: String }) href?: string
   @property({ type: Boolean }) section?: boolean
 
-  @state() sectionTitle?: string
-  @state() realHref = ''
+  // TODO
+  @state() private sectionTitle?: string
+  @state() private realHref = ''
+  @state() private anchor = false
 
   override willUpdate(changed: Map<string | number | symbol, unknown>): void {
     super.willUpdate(changed)
 
     if (changed.has('href')) {
-      this.realHref = this.processHref()
+      if (this.href?.startsWith('#')) {
+        this.anchor = true
+        this.realHref = this.href!.slice(1)
+      } else {
+        this.anchor = false
+        this.realHref = this.processHref()
+      }
     }
   }
 
   override render() {
     let children
-    if (this.section) {
+    if (this.anchor) {
+      children = html`<slot></slot>`
+    } else if (this.section) {
       children = this.sectionTitle ? html`${this.sectionTitle}` : html`<slot>Fetching Title...</slot>`
     } else {
       children = html`<slot></slot>`
@@ -27,9 +38,36 @@ class MDLink extends LitElement {
     return html`<a href="${this.realHref}" @click=${this.handleClick}>${children}</a>`
   }
 
-  private handleClick() {
+  private handleClick(e: Event) {
     if (!this.href) {
       return
+    }
+    if (this.anchor) {
+      let root = this.getRootNode() as DocumentFragment
+      let element
+
+      while (!element) {
+        element = root.querySelector(`#${this.realHref}`)
+        if (root.nodeType === Node.DOCUMENT_FRAGMENT_NODE) {
+          root = (root as ShadowRoot).host.getRootNode() as DocumentFragment
+        } else {
+          // 到 body 就可以停了
+          break
+        }
+      }
+
+      if (element) {
+        element.scrollIntoView({
+          behavior: 'smooth',
+        })
+        if (element.nodeType === Node.ELEMENT_NODE) {
+          blinkElement(element as HTMLElement)
+        }
+      } else {
+        console.warn(`Cannot found #${this.realHref} element`)
+      }
+
+      e.preventDefault()
     }
     // location.hash = `#${paths.join('/')}`
   }
