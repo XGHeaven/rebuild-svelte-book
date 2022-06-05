@@ -24,18 +24,18 @@
   "homepage": "https://github.com/XGHeaven/rebuild-svelte-book#readme",
   "devDependencies": {
     "prettier": "^2.6.2",
-    "vite": "^2.6.13"
+    "vite": "^2.9.9"
   },
   "dependencies": {
-    "@types/diff": "^5.0.1",
-    "diff": "^5.0.0",
-    "diff2html": "^3.4.13",
-    "github-markdown-css": "^5.0.0",
-    "highlight.js": "^11.3.1",
-    "lit": "^2.0.2",
-    "remark": "^14.0.1",
+    "@types/diff": "^5.0.2",
+    "diff": "^5.1.0",
+    "diff2html": "^3.4.17",
+    "github-markdown-css": "^5.1.0",
+    "highlight.js": "^11.5.1",
+    "lit": "^2.2.5",
+    "remark": "^14.0.2",
     "remark-frontmatter": "^4.0.1",
     "remark-gfm": "^3.0.1",
-    "remark-html": "^15.0.0"
+    "remark-html": "^15.0.1"
   }
 }
