@@ -3,10 +3,27 @@ import { customElement, property } from 'lit/decorators.js'
 
 const TYPE_EMOJI_MAP: Record<string, string> = {
   preknowledge: '🍽',
+  question: '🙋',
 }
 
 const TYPE_TEXT_MAP: Record<string, string> = {
   preknowledge: '预备知识',
+  question: '提问',
+}
+
+const TYPE_BORDER_COLOR: Record<string, string> = {
+  preknowledge: '#c0c8ff',
+  question: '#6effc7',
+}
+
+const TYPE_BACKGROUND_COLOR: Record<string, string> = {
+  preknowledge: '#c0c8ff5c',
+  question: '#6effc75c',
+}
+
+const TYPE_TEXT_COLOR: Record<string, string> = {
+  preknowledge: '545454',
+  question: '#546454',
 }
 
 @customElement('md-note')
@@ -24,17 +41,13 @@ export class MDNote extends LitElement {
       align-items: center;
     }
 
-    .type-preknowledge {
-      border-color: #c0c8ff;
-      background-color: #c0c8ff5c;
-    }
-
     .indicator {
       display: flex;
       flex: none;
       flex-direction: column;
       margin-right: 12px;
       text-align: center;
+      min-width: 48px;
     }
 
     .icon {
@@ -42,7 +55,6 @@ export class MDNote extends LitElement {
     }
 
     .text {
-      color: grey;
       font-size: 12px;
     }
 
@@ -51,7 +63,6 @@ export class MDNote extends LitElement {
     }
 
     ::slotted(*) {
-      color: grey;
       font-size: 14px;
     }
 
@@ -64,16 +75,28 @@ export class MDNote extends LitElement {
   @property({ type: String }) link?: string
 
   override render() {
+    const { type = '' } = this
     return html`
-      <div class="container type-${this.type ?? ''}">
+      <div class="container">
         <div class="indicator">
-          <div class="icon">${TYPE_EMOJI_MAP[this.type ?? '']}</div>
-          <div class="text">${TYPE_TEXT_MAP[this.type ?? '']}</div>
+          <div class="icon">${TYPE_EMOJI_MAP[type]}</div>
+          <div class="text">${TYPE_TEXT_MAP[type]}</div>
         </div>
         <div class="content">
           <slot></slot>
         </div>
       </div>
+      <style>
+        :host .container {
+          border-color: ${TYPE_BORDER_COLOR[type]};
+          background-color: ${TYPE_BACKGROUND_COLOR[type]};
+        }
+
+        ::slotted(*),
+        .text {
+          color: ${TYPE_TEXT_COLOR[type]};
+        }
+      </style>
     `
   }
 }
