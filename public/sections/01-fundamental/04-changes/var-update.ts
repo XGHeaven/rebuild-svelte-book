@@ -1,6 +1,6 @@
 import { element, text, insert, append, setText, remove } from 'helper'
 
-function createBlock(target: HTMLElement, anchor: HTMLElement, ctx: { a: number; b: number }) {
+function createBlock(target: HTMLElement, anchor: HTMLElement | null, ctx: { a: number; b: number }) {
   const div = element('div')
   const text1 = text(`${ctx.a}`)
   const text2 = text(':')

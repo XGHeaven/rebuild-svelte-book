@@ -8,7 +8,7 @@
     "build:core": "vite build",
     "build:sections": "node scripts/build-sections-json.mjs",
     "format:md": "prettier -w ./public/sections/**/*.md",
-    "format:code": "prettier -w ./public/**/*.{js,ts,html}",
+    "format:code": "prettier -w ./public/**/*.{js,ts,html,svelte}",
     "format:src": "prettier -w ./src/**/*.{ts,css}",
     "format": "pnpm run format:md && pnpm run format:code && pnpm run format:src"
   },
@@ -23,19 +23,20 @@
   },
   "homepage": "https://github.com/XGHeaven/rebuild-svelte-book#readme",
   "devDependencies": {
-    "prettier": "^2.6.2",
+    "@types/diff": "^5.2.1",
+    "prettier": "^3.3.2",
+    "prettier-plugin-svelte": "^3.2.4",
     "vite": "^2.9.9"
   },
   "dependencies": {
-    "@types/diff": "^5.0.2",
-    "diff": "^5.1.0",
-    "diff2html": "^3.4.17",
+    "@shikijs/transformers": "^1.6.0",
+    "diff": "^5.2.0",
     "github-markdown-css": "^5.1.0",
-    "highlight.js": "^11.5.1",
     "lit": "^2.2.5",
     "remark": "^14.0.2",
     "remark-frontmatter": "^4.0.1",
     "remark-gfm": "^3.0.1",
-    "remark-html": "^15.0.1"
+    "remark-html": "^15.0.1",
+    "shiki": "^1.6.0"
   }
 }

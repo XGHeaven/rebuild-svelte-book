@@ -43,7 +43,7 @@ export class MDCore extends LitElement {
 
   override render() {
     return html`
-      <div class="debug">ParseTime: ${this._parseTime}, MarkdownLength: ${this.mdContent.length}</div>
+      <div class="debug">ParseTime: ${this._parseTime.toFixed(2)} ms, MarkdownLength: ${this.mdContent.length}</div>
       <div class="markdown-body">${this.domNode}</div>
     `
   }

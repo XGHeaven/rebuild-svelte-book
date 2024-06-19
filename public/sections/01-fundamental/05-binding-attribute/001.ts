@@ -3,7 +3,7 @@ function createBlock() {
   input.className = 'a'
   input.value = 'b'
   input.dataset.id = 'id'
-  input.setAttribute('other', 'other')
+  input.setAttribute('others', 'other')
   return {
     mount(target, anchor) {
       target.insertBefore(input, anchor)

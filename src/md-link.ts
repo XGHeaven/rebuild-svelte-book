@@ -82,6 +82,7 @@ class MDLink extends LitElement {
       }
       if (path === '..') {
         paths.pop()
+        continue
       }
       paths.push(path)
     }
